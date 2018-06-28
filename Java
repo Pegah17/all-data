@@ -1,0 +1,155 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+#controls{
+	background:#efefef;
+}
+#deleteSection{
+	width:300px;
+	float:left;
+}
+#showSection{
+	width:500px;
+	float:right;
+	text-align:right;
+	display:none;
+}
+#showSection input{
+	width:50px;
+	text-align:center;
+}
+#results table{
+	border:1px solid #333;
+	width:100%;
+}
+#results tr:nth-child(1){
+	background:#333;
+	color:#FFF;
+}
+#results tr td{
+	border:1px solid #666;
+}
+#results tr td:nth-child(1){
+	width:20%;
+}
+#results tr td:nth-child(2){
+	width:40%;
+}
+#results tr td:nth-child(3){
+	width:40%;
+}
+.clear{
+	clear:both;
+}
+</style>
+<script type="text/javascript">
+var results = new Array();
+function deleteFile(){
+	if( confirm("Are you sure?") ){
+		// OK
+		var name = prompt("Pleas Enter your name");
+		if( name != null && name != "" && name != " " ){
+			results.push(resultGen(name));
+			document.getElementById("showSection").style.display = "block";
+			document.getElementById("results").innerHTML = viewGen();
+		}else{
+			document.getElementById("results").innerHTML = '<h2 align="center">Please enter correct name</h2>';
+		}
+	}
+}
+function addZero(num){
+	if( num <10 ){
+		return "0"+num;
+	}else{
+		return num;
+	}
+}
+function dateGen(){
+	var d = new Date(),
+		y = d.getFullYear(),
+		M = addZero(d.getMonth()+1),
+		D = addZero(d.getDate()),
+		h = addZero(d.getHours()),
+		m = addZero(d.getMinutes()),
+		s = addZero(d.getSeconds());
+	return y+"/"+M+"/"+D+" "+h+":"+m+":"+s;
+}
+function resultGen(name){
+	return r = [results.length+1, name, dateGen()];
+}
+function viewGen(){
+	var output = '<table><tr><th>No</th><th>Name</th><th>Date</th></tr>';
+	for( i=results.length-1; i>=0 ; i--){
+		output += '<tr>';
+			for(j=0; j<=results[i].length-1; j++){
+				output += '<td>';
+				output += results[i][j];
+				output += '</td>';
+			}
+		output += '</tr>';
+	}
+	output += '</table>';
+	paginationGen();
+	return output;
+}
+function singleShow(record){
+	record = record-1;
+	if( record >= 0 && record <= results.length-1 ){
+		var output = '<table><tr><th>No</th><th>Name</th><th>Date</th></tr>';
+		output += '<tr>';
+			for(i=0; i<=results[record].length-1; i++){
+				output += '<td>';
+				output += results[record][i];
+				output += '</td>';
+			}
+		output += '</tr>';
+		output += '</table>';
+		document.getElementById("results").innerHTML = output;
+	}else{
+		document.getElementById("results").innerHTML = '<h2 align="center">Please enter correct record number</h2>';
+	}
+}
+function showAll(){
+	document.getElementById("results").innerHTML = viewGen();
+}
+function paginationGen(){
+	if( results.length % 3 ){
+		var count = Math.floor(results.length/3)+1;
+	}else{
+		var count = (results.length/3);
+	}
+	//console.log(count);
+	if( count != 1 ){
+		var output = "";
+		for( i=1; i<=count; i++ ){
+			output += '<a href="#" class="pagination">'+i+'</a>';
+		}
+		document.getElementById("pagination").innerHTML = output;
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="controls">
+	<div id="deleteSection">
+    	<button onclick="deleteFile()">Delete File</button>
+    </div>
+    <div id="showSection">
+    	<button onclick="showAll()">Show All</button>
+        OR
+        <input type="text" placeholder="#" onchange="singleShow(this.value)" />
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="results"></div>
+<div id="pagination"></div>
+</body>
+</html>
