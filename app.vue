@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <span>Star Wars API Vue PWA</span>
+      <span>API Vue</span>
     </header>
     <main>
       <img src="./assets/logo.png" alt="SWAPI PWA">
