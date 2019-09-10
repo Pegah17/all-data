@@ -2,7 +2,7 @@
   "name": "vue-app",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Finnian Anderson <get@finnian.io>",
+  "author": "Pegah",
   "private": true,
   "scripts": {
     "report-coverage": "codecov",
