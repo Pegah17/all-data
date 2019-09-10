@@ -4,7 +4,7 @@
       <span>API Vue</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="SWAPI PWA">
+      <img src="./assets/logo.png" alt="SWAPI">
       <router-view></router-view>
     </main>
     <footer>
@@ -17,7 +17,7 @@
 export default {
   name: 'app',
   metaInfo: {
-    title: 'API Vue PWA',
+    title: 'API Vue',
     meta: [
       { name: 'description', content: 'Web App built with Vue.js', vmid: 'description' },
       { name: 'og:description', content: 'Web App built with Vue.js', vmid: 'og:description' }
