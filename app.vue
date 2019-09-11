@@ -4,7 +4,7 @@
       <span>API Vue</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="SWAPI">
+      <img src="./assets/logo.png" alt="The Star Wars API">
       <router-view></router-view>
     </main>
     <footer>
@@ -52,7 +52,7 @@ main {
   flex: 1 0 auto;
 }
 header, footer {
-  background-color: #35495E;
+  background-color: #60a0e2;
   color: #ffffff;
 }
 header, footer {
