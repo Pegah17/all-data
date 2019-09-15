@@ -38,6 +38,7 @@ export default {
   name: 'hello',
   data () {
     return {
+    
       results: [],
       entities: [],
       selectedResult: null,
